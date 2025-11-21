@@ -6,4 +6,1660 @@
     <title>Literati | Modern Classic Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === CSS Variables === */
+        :root {
+            --primary-color: #2C5530;
+            --accent-color: #B68D40;
+            --secondary-color: #8B4513;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --border-color: #E8E8E8;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, #4A7C59 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-fast: all 0.2s ease;
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --max-width: 1280px;
+            --header-height: 80px;
+        }
+
+        .dark-mode {
+            --primary-color: #7CB798;
+            --accent-color: #D4AF37;
+            --secondary-color: #CD7F32;
+            --text-primary: #F0F0F0;
+            --text-secondary: #B0B0B0;
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --bg-card: #1E1E1E;
+            --border-color: #333;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.35);
+            --shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === Base Styles === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+            transition: var(--transition);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 92%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.25rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(42, 85, 48, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(42, 85, 48, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 85, 48, 0.3);
+        }
+
+        .btn-accent {
+            background: var(--gradient-accent);
+            box-shadow: 0 6px 20px rgba(182, 141, 64, 0.3);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 10px 25px rgba(182, 141, 64, 0.4);
+        }
+
+        .section {
+            padding: 6rem 0;
+        }
+
+        /* === Header === */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            height: var(--header-height);
+        }
+
+        .dark-mode header {
+            background: rgba(30, 30, 30, 0.92);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark-mode .header-scrolled {
+            background: rgba(20, 20, 20, 0.98) !important;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            font-size: 1.75rem;
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover:after, .nav-menu a.active:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        .social-icons a:hover:before {
+            opacity: 1;
+        }
+
+        .social-icons a i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(15deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 1001;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            padding: 14rem 0 10rem;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.03) 0%, rgba(182, 141, 64, 0.03) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: var(--header-height);
+        }
+
+        .hero:before, .hero:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero:before {
+            top: -30%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(182, 141, 64, 0.08) 0%, rgba(182, 141, 64, 0) 70%);
+        }
+
+        .hero:after {
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(44, 85, 48, 0.05) 0%, rgba(44, 85, 48, 0) 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            margin-bottom: 1.75rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            color: var(--text-secondary);
+            margin-bottom: 2.75rem;
+            max-width: 650px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        /* === Featured Articles === */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3rem);
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .dark-mode .article-card {
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .article-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-image:before {
+            opacity: 1;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.08);
+        }
+
+        .article-content {
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+
+        .tag-featured {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: 0 4px 10px rgba(182, 141, 64, 0.3);
+        }
+
+        .article-content h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .article-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+            flex-grow: 1;
+            font-size: 1.05rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* === Newsletter === */
+        .newsletter {
+            background: var(--gradient);
+            color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 5rem 4rem;
+            text-align: center;
+            margin: 6rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+        }
+
+        .newsletter:before, .newsletter:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .newsletter:before {
+            top: -40%;
+            right: -15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .newsletter:after {
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            color: white;
+            margin-bottom: 1.25rem;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+        }
+
+        .newsletter p {
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1.25rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 1.15rem 1.75rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1.05rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* === Main Layout === */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* === Sidebar === */
+        .sidebar-widget {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .dark-mode .sidebar-widget {
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sidebar-widget:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .sidebar-widget h3 i {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        .about-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        .author-avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-sidebar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .social-sidebar a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            color: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-sidebar a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-sidebar a:hover:before {
+            opacity: 1;
+        }
+
+        .social-sidebar a i, .social-sidebar a span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-sidebar a:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-sidebar i {
+            font-size: 1.5rem;
+        }
+
+        .social-sidebar span {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .popular-posts li {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .popular-posts li:hover {
+            transform: translateX(5px);
+        }
+
+        .popular-posts li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .popular-posts a {
+            font-weight: 600;
+            display: block;
+            transition: var(--transition);
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .popular-posts a:hover {
+            color: var(--accent-color);
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+        }
+
+        /* === Footer === */
+        footer {
+            background: var(--bg-secondary);
+            padding: 6rem 0 3rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.35rem;
+            margin-bottom: 1.75rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:before {
+            content: '›';
+            color: var(--accent-color);
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* === Mobile Navigation === */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-menu {
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .mobile-nav .nav-menu a {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .mobile-nav .header-actions {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            background: var(--bg-secondary);
+        }
+
+        .mobile-nav-close:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* === Scroll to Top Button === */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === Loading Animation === */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* === Responsive Design === */
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero {
+                padding: 12rem 0 8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                width: 94%;
+                padding: 0 1.25rem;
+            }
+            
+            .nav-menu, .header-actions .btn, .header-actions .social-icons {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 10rem 0 6rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .articles-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter {
+                padding: 4rem 2.5rem;
+                margin: 4rem 0;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .sidebar-widget {
+                padding: 2rem;
+            }
+            
+            .social-sidebar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .article-content {
+                padding: 1.75rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 96%;
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .article-tags {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .newsletter {
+                padding: 3rem 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.7rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .social-sidebar {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-pen-nib"></i>
+                <span>Literati</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Essays</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <div class="social-icons">
+                    <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <button class="btn">Subscribe</button>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Essays</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+            <div class="social-icons">
+                <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <button class="btn">Subscribe</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Where Thoughtful Minds Connect</h1>
+                <p>Discover profound essays, cultural insights, and intellectual discourse in an elegantly designed space for modern readers and writers.</p>
+                <div class="hero-actions">
+                    <button class="btn">
+                        <i class="fas fa-book-open"></i>
+                        Explore Essays
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-user-plus"></i>
+                        Join Our Community
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Curated Essays</h2>
+                <p>Thought-provoking content selected for depth, clarity, and intellectual value</p>
+            </div>
+            
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Books and reading">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag tag-featured">Editor's Pick</span>
+                            <span class="tag">Philosophy</span>
+                            <span class="tag">Mindfulness</span>
+                        </div>
+                        <h3>The Art of Slow Reading in the Age of Digital Noise</h3>
+                        <p>How to regain the ability to deeply immerse yourself in text when we're surrounded by endless notifications and distractions.</p>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Author" class="author-avatar">
+                                <span>Mark Semenov</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock"></i>
+                                <span>8 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Art">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag tag-featured">Trending</span>
+                            <span class="tag">Art</span>
+                            <span class="tag">Technology</span>
+                        </div>
+                        <h3>Digital Art: New Aesthetics or Temporary Phenomenon?</h3>
+                        <p>Exploring how digital technologies are changing our perception of beauty and artistic value in contemporary culture.</p>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Author" class="author-avatar">
+                                <span>Anna Kovaleva</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock"></i>
+                                <span>12 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Writing">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Writing</span>
+                            <span class="tag">Creativity</span>
+                            <span class="tag">Productivity</span>
+                        </div>
+                        <h3>Overcoming Creative Block: Methods from Classics and Contemporaries</h3>
+                        <p>Practical advice and philosophical reflections on the nature of creative blocks and effective ways to overcome them.</p>
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Author" class="author-avatar">
+                                <span>Ivan Petrov</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock"></i>
+                                <span>10 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="container">
+        <div class="newsletter">
+            <div class="newsletter-content">
+                <h2>Join Our Intellectual Community</h2>
+                <p>Subscribe to our weekly newsletter and receive carefully curated essays, exclusive content, and invitations to member-only discussions.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-accent">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content & Sidebar -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="main-layout">
+                <!-- Main Content -->
+                <main>
+                    <!-- Additional articles would go here -->
+                </main>
+                
+                <!-- Sidebar -->
+                <aside>
+                    <!-- About Widget -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-user"></i> About The Author</h3>
+                        <div class="about-author">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Blog Author" class="author-avatar-large">
+                            <h4>Alexey Novikov</h4>
+                            <p>Writer and cultural researcher exploring the connections between tradition and modernity in art, literature, and contemporary thought.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Widget -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-users"></i> Join The Conversation</h3>
+                        <div class="social-sidebar">
+                            <a href="#">
+                                <i class="fab fa-telegram"></i>
+                                <span>Telegram</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="#">
+                                <i class="fab fa-medium"></i>
+                                <span>Medium</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Popular Posts -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-fire"></i> Most Read</h3>
+                        <ul class="popular-posts">
+                            <li>
+                                <a href="#">Why Do We Need Beauty in the Digital Age?</a>
+                                <div class="post-meta">
+                                    <span><i class="far fa-eye"></i> 1.2K views</span>
+                                    <span><i class="far fa-clock"></i> 2 weeks ago</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">The Philosophy of a Cozy Evening: Creating Space for Reflection</a>
+                                <div class="post-meta">
+                                    <span><i class="far fa-eye"></i> 984 views</span>
+                                    <span><i class="far fa-clock"></i> 3 weeks ago</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">The Crisis of Long Forms: Can Deep Content Survive the TikTok Era?</a>
+                                <div class="post-meta">
+                                    <span><i class="far fa-eye"></i> 1.5K views</span>
+                                    <span><i class="far fa-clock"></i> 1 month ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Literati</h4>
+                    <p>A sanctuary for thoughtful minds in a noisy digital world. Quality writing, profound ideas, and meaningful conversations.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Essays</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Philosophy</a></li>
+                        <li><a href="#">Art & Culture</a></li>
+                        <li><a href="#">Literature</a></li>
+                        <li><a href="#">Society</a></li>
+                        <li><a href="#">Technology</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@literati.com">hello@literati.com</a></li>
+                        <li><a href="#">Submit Material</a></li>
+                        <li><a href="#">Advertising & Cooperation</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Literati. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: #e25555;"></i> for thoughtful readers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Loading Bar Animation
+        window.addEventListener('load', function() {
+            const loadingBar = document.getElementById('loadingBar');
+            loadingBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBar.style.opacity = '0';
+                setTimeout(() => {
+                    loadingBar.style.display = 'none';
+                }, 300);
+            }, 500);
+        });
+
+        // Update loading bar on route changes (simulated)
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href').startsWith('#')) return;
+                
+                const loadingBar = document.getElementById('loadingBar');
+                loadingBar.style.display = 'block';
+                loadingBar.style.opacity = '1';
+                loadingBar.style.width = '0';
+                
+                setTimeout(() => {
+                    loadingBar.style.width = '70%';
+                }, 10);
+            });
+        });
+
+        // Theme Toggle with enhanced animation
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+                
+                // Add animation class
+                themeToggle.classList.add('theme-transition');
+                setTimeout(() => {
+                    themeToggle.classList.remove('theme-transition');
+                }, 500);
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+                
+                // Add animation class
+                themeToggle.classList.add('theme-transition');
+                setTimeout(() => {
+                    themeToggle.classList.remove('theme-transition');
+                }, 500);
+            }
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Mobile Menu with enhanced animations
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            mobileMenuBtn.style.transform = 'rotate(90deg)';
+        });
+        
+        mobileNavClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            mobileMenuBtn.style.transform = 'rotate(0deg)';
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNav.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.style.transform = 'rotate(0deg)';
+            });
+        });
+        
+        // Enhanced Newsletter Form Submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success state
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                submitBtn.style.background = 'var(--accent-color)';
+                
+                // Reset after delay
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    this.reset();
+                    
+                    // Show success message
+                    alert(`Thank you for subscribing, ${email}! Welcome to our community of thoughtful readers.`);
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Header scroll effect with enhanced behavior
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                mobileMenuBtn.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Add animation to elements on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.article-card, .sidebar-widget, .section-header');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        window.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.article-card, .sidebar-widget, .section-header');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Trigger initial animation check
+            setTimeout(animateOnScroll, 100);
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Add active state to navigation links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
